@@ -1,0 +1,54 @@
+body {
+    background-image: url(sem.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: black;
+}
+.nav-wraper{
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+ }
+ 
+.left-side {
+display: flex;
+}
+
+.right-side {
+color:blue
+}
+.nav-wraper > .left-side >div{
+    margin-right: 20px;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+h3 {
+    margin-left: 200px;
+    margin-top: 90px;
+    font-size: 50px;
+    font-style: italic;
+}
+.textbox {
+    font-size: 20px;
+    font-style: italic;
+}
+.container {
+    border:solid black;
+}
+.mid-text h1{
+    font-size: 50px;
+    font-style: italic;
+    margin: 50px;
+}
+.kontakt {
+    margin : 90px;
+    font-size: 20px;
+}
+.omoss {
+     margin: 90px;
+     font-size: 20px;
+} 
+.semlist {
+    margin : 90px;
+
+}

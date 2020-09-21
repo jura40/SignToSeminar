@@ -52,3 +52,8 @@ h3 {
     margin : 90px;
 
 }
+.left-side a:hover,
+.active {
+    background: #dc0101;
+    color : #ffffff;
+}

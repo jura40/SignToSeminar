@@ -1,73 +1,100 @@
-import React from "react";
+import React, { Component } from "react";
 
-const sem1 = () => {
-  return (
-    <div>
-      <a href="index.html" style={{ color: "black", margin: "50px" }}>
-        HOME
-      </a>
+class sem1 extends Component {
+  constructor() {
+    super();
+    this.state = {
+      sem1: {},
+      value: {
+        mail: '',
+        förnamn: '',
+        efternamn: ''
+      }
+    }
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
-      <article style={{ margin: "50px 0px 0px 90px", fontSize: "20px" }}>
-        Kursbeskrivning
-        <p>Retorikkurs i presentationsteknik.</p>
-        <p>
-          Det här är kursen för er som vill hålla presentationer som lyssnarna
-          inte vill ska ta slut.
-        </p>
-        <p>Och som de kommer att prata om länge.</p>
-        <p>
-          Denna utbildning hjälper er att addera en wow-effekt till era
-          presentationer.
-        </p>
-        <p>
-          Ni får lära er att använda klädsel, röst, kroppsspråk och rum på ett
-          strategiskt sätt för att förstärka budskapet.
-        </p>
-        <p>
-          Vi skräddarsyr utbildningen specifikt för ert företag, och ni väljer
-          själva plats, utformning och kurslängd (hel-, halv- eller
-          tvådagarskurs).
-        </p>
-        <p>
-          Vi erbjuder även kortare föreläsningar och workshops på ämnet om det
-          passar er bättre.
-        </p>
-      </article>
+  componentDidMount() {
+    // Simple GET request using fetch
+    fetch('https://localhost:5001/api/seminars/2')
+        .then(response => response.json())
+        .then(data => this.setState({ sem1: data}));
+
+}
+
+handleChange(obj) {
+  let newUser = {...this.state.value,...obj}
+  this.setState({value: newUser});
+}
+
+handleSubmit(event) {
+  alert('Tack ' + this.state.value.förnamn + ' för att du har valt oss');
+  event.preventDefault();
+}
+
+  render() {
+    console.log(this.state.value)
+
+    return (
       <div>
-        {" "}
-        <a
-          href="seminarium.html"
-          style={{ margin: "50px 0px 0px 90px", fontSize: "25px" }}
-        >
-          back
+        <a href="index.html" style={{ color: "black", margin: "50px" }}>
+          HOME
         </a>
-      </div>
-      <div>
-        <form>
-          <input
-            type="email"
-            placeholder="email"
-            style={{ margin: "10px 0px 0px 90px" }}
-          ></input>
-          <div>
+  
+        <article style={{ margin: "50px 0px 0px 90px", fontSize: "20px" }}>
+          Kursbeskrivning
+          <p>{this.state.sem1.namn}kurs i presentationsteknik.</p>
+          <p>
+            {this.state.sem1.beskrivning}
+          </p>
+        </article>
+        <div>
+          {" "}
+          <a
+            href="seminarium.html"
+            style={{ margin: "50px 0px 0px 90px", fontSize: "25px" }}
+          >
+            back
+          </a>
+        </div>
+        <div>
+          <form onSubmit={this.handleSubmit}>
             <input
-              type="förname"
-              placeholder="förnamn"
+              type="email"
+              placeholder="email"
+              name= "mail"
+              value={this.state.value.mail} 
+              onChange={this.handleChange}
               style={{ margin: "10px 0px 0px 90px" }}
             ></input>
-          </div>
-          <div>
-            <input
-              type="efternamn"
-              placeholder="efternamn"
-              style={{ margin: "10px 0px 0px 90px" }}
-            ></input>
-          </div>
-          <input type="submit" style={{ margin: "10px 0px 0px 90px" }}></input>
-        </form>
+            <div>
+              <input
+                type="förnamn"
+                placeholder="förnamn"
+                name= "förnamn"
+                value={this.state.value.förnamn} 
+                onChange={e => this.handleChange({ förnamn: e.target.value})}
+                style={{ margin: "10px 0px 0px 90px" }}
+              ></input>
+            </div>
+            <div>
+              <input
+                type="efternamn"
+                placeholder="efternamn"
+                name= "efternamn"
+                value={this.state.value.efternamn} 
+                onChange={this.handleChange}
+                style={{ margin: "10px 0px 0px 90px" }}
+              ></input>
+            </div>
+            <input type="submit" style={{ margin: "10px 0px 0px 90px" }}></input>
+          </form>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
+  
 };
 
 export default sem1;

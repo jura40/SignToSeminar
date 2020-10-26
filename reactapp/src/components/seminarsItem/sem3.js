@@ -1,74 +1,109 @@
-import React from "react";
+import React, { Component } from "react";
 
-const sem3 = () => {
-  return (
-    <div>
+class sem3 extends Component {
+  constructor() {
+    super();
+    this.state = {
+      newUser: '',
+      sem3: {},
+      value: {
+        mail: '',
+        förnamn: '',
+        efternamn: '',
+        seminarId: 3
+      }
+    }
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+
+  }
+
+componentDidMount() {
+    // Simple GET request using fetch
+    fetch('https://localhost:5001/api/seminars/3')
+        .then(response => response.json())
+        .then(data => this.setState({ sem3: data}));
+}
+
+handleChange(obj) {
+   this.state.newUser = {...this.state.value,...obj}
+  this.setState({value: this.state.newUser});
+}
+
+handleSubmit(event) {
+    fetch("https://localhost:5001/api/visitors", {
+      method: "POST",
+      body: JSON.stringify(this.state.newUser),
+      headers: { "Content-type": "application/json; charset=UTF-8" },
+    });
+
+  alert('Tack ' + this.state.value.förnamn + ' för att du har valt oss');
+  event.preventDefault();
+}
+
+
+
+
+  render() {
+    return (
       <div>
-        <a
-          href="index.html"
-          style={{ color: "black", margin: "50px", fontSize: "25px" }}
-        >
+        <a href="index.html" style={{ color: "black", margin: "50px" }}>
           HOME
         </a>
-      </div>
-      <article style={{ margin: "50px 0px 20px 90px", fontSize: "20px" }}>
-        Kursen går igenom steg-för-steg varför vi blir nervösa <br />
-        för att sedan presentera både fysiska och mentala sätt att handskas{" "}
-        <br />
-        med nervositet så att du kan leva med den, och kanske till och med få en
-        kick av den. <br />
-        Alla kan nämligen lära sig att handskas med sin nervositet, och sluta
-        låta <br />
-        den begränsa livet. <br />
-        jöregn er Här varvas teori och praktik där vi jobbar med interaktiva
-        övningar på ett lättsamt <br />
-        och lärorikt sätt. På kursen får träffa andra i samma situation vilket
-        gör att ni <br />
-        tillsammans kan växa och utgå ifrån er egen situation. Av erfarenhet vet
-        vi att gruppen <br />
-        bör hållas liten för att vi ska våga utmana och övervinna vår tvekan
-        inför det vi <br />
-        tycker är obehagligt, därför har vi aldrig mer än 12 deltagare på vår
-        våga-tala-kurs. <br />
-        Kursen är ett utmärkt första steg för dig som har målet att gå vår
-        populära tvådagarskurs <br />i retorik och presentationsteknik Snacka
-        Snyggt.
-      </article>
-      <div>
-        {" "}
-        <a
-          href="seminarium.html"
-          style={{ margin: "50px 0px 0px 90px", fontSize: "25px" }}
-        >
-          back
-        </a>
-      </div>
-      <div>
-        <form>
-          <input
-            type="email"
-            placeholder="email"
-            style={{ margin: "10px 0px 0px 90px" }}
-          ></input>
-          <div>
+  
+        <article style={{ margin: "50px 0px 0px 90px", fontSize: "20px" }}>
+          Kursbeskrivning
+          <p>{this.state.sem3.namn}kurs i presentationsteknik.</p>
+          <p>
+            {this.state.sem3.beskrivning}
+          </p>
+        </article>
+        <div>
+          {" "}
+          <a
+            href="seminarium.html"
+            style={{ margin: "50px 0px 0px 90px", fontSize: "25px" }}
+          >
+            back
+          </a>
+        </div>
+        <div>
+          <form onSubmit={this.handleSubmit}>
             <input
-              type="förname"
-              placeholder="förnamn"
+              type="email"
+              placeholder="email"
+              name= "mail"
+              value={this.state.value.mail} 
+              onChange={e => this.handleChange({ mail: e.target.value })}
               style={{ margin: "10px 0px 0px 90px" }}
             ></input>
-          </div>
-          <div>
-            <input
-              type="efternamn"
-              placeholder="efternamn"
-              style={{ margin: "10px 0px 0px 90px" }}
-            ></input>
-          </div>
-          <input type="submit" style={{ margin: "10px 0px 0px 90px" }}></input>
-        </form>
+            <div>
+              <input
+                type="förnamn"
+                placeholder="förnamn"
+                name= "förnamn"
+                value={this.state.value.förnamn} 
+                onChange={e => this.handleChange({ förnamn: e.target.value})}
+                style={{ margin: "10px 0px 0px 90px" }}
+              ></input>
+            </div>
+            <div>
+              <input
+                type="efternamn"
+                placeholder="efternamn"
+                name= "efternamn"
+                value={this.state.value.efternamn} 
+                onChange={e => this.handleChange({ efternamn: e.target.value })}
+                style={{ margin: "10px 0px 0px 90px" }}
+              ></input>
+            </div>
+            <input type="submit" style={{ margin: "10px 0px 0px 90px" }}></input>
+          </form>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
+  
 };
 
 export default sem3;

@@ -1,61 +1,109 @@
-import React from "react";
+import React, { Component } from "react";
 
-const sem2 = () => {
-  return (
-    <div>
-      <a
-        href="index.html"
-        style={{ color: "black", margin: "90px", fontSize: "25px" }}
-      >
-        HOME
-      </a>
-      <article style={{ margin: "90px", fontSize: "20px" }}>
-        KA-DAGEN 2021 KA-DAGEN är en av Sveriges största mötesplatser för
-        kontrollansvariga <br />
-        och andra som arbetar med frågor kring bygglagstiftning och byggteknik.{" "}
-        <br />
-        Förutom ny kunskap och information får du som deltagare även möjlighet{" "}
-        <br />
-        att ställa dina frågor till experterna, nätverka och skapa nya
-        relationer. <br />
-        KA-dagen genomförs på våren 2021 <br />
-        Varmt välkommen!
-      </article>
+class sem2 extends Component {
+  constructor() {
+    super();
+    this.state = {
+      newUser: '',
+      sem2: {},
+      value: {
+        mail: '',
+        förnamn: '',
+        efternamn: '',
+        seminarId: 2
+      }
+    }
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+
+  }
+
+componentDidMount() {
+    // Simple GET request using fetch
+    fetch('https://localhost:5001/api/seminars/2')
+        .then(response => response.json())
+        .then(data => this.setState({ sem2: data}));
+}
+
+handleChange(obj) {
+   this.state.newUser = {...this.state.value,...obj}
+  this.setState({value: this.state.newUser});
+}
+
+handleSubmit(event) {
+    fetch("https://localhost:5001/api/visitors", {
+      method: "POST",
+      body: JSON.stringify(this.state.newUser),
+      headers: { "Content-type": "application/json; charset=UTF-8" },
+    });
+
+  alert('Tack ' + this.state.value.förnamn + ' för att du har valt oss');
+  event.preventDefault();
+}
+
+
+
+
+  render() {
+    return (
       <div>
-        {" "}
-        <a
-          href="seminarium.html"
-          style={{ margin: "50px 0px 0px 90px", fontSize: "25px" }}
-        >
-          back
+        <a href="index.html" style={{ color: "black", margin: "50px" }}>
+          HOME
         </a>
-      </div>
-      <div>
-        <form>
-          <input
-            type="email"
-            placeholder="email"
-            style={{ margin: "10px 0px 0px 90px" }}
-          ></input>
-          <div>
+  
+        <article style={{ margin: "50px 0px 0px 90px", fontSize: "20px" }}>
+          Kursbeskrivning
+          <p>{this.state.sem2.namn}kurs i presentationsteknik.</p>
+          <p>
+            {this.state.sem2.beskrivning}
+          </p>
+        </article>
+        <div>
+          {" "}
+          <a
+            href="seminarium.html"
+            style={{ margin: "50px 0px 0px 90px", fontSize: "25px" }}
+          >
+            back
+          </a>
+        </div>
+        <div>
+          <form onSubmit={this.handleSubmit}>
             <input
-              type="förname"
-              placeholder="förnamn"
+              type="email"
+              placeholder="email"
+              name= "mail"
+              value={this.state.value.mail} 
+              onChange={e => this.handleChange({ mail: e.target.value })}
               style={{ margin: "10px 0px 0px 90px" }}
             ></input>
-          </div>
-          <div>
-            <input
-              type="efternamn"
-              placeholder="efternamn"
-              style={{ margin: "10px 0px 0px 90px" }}
-            ></input>
-          </div>
-          <input type="submit" style={{ margin: "10px 0px 0px 90px" }}></input>
-        </form>
+            <div>
+              <input
+                type="förnamn"
+                placeholder="förnamn"
+                name= "förnamn"
+                value={this.state.value.förnamn} 
+                onChange={e => this.handleChange({ förnamn: e.target.value})}
+                style={{ margin: "10px 0px 0px 90px" }}
+              ></input>
+            </div>
+            <div>
+              <input
+                type="efternamn"
+                placeholder="efternamn"
+                name= "efternamn"
+                value={this.state.value.efternamn} 
+                onChange={e => this.handleChange({ efternamn: e.target.value })}
+                style={{ margin: "10px 0px 0px 90px" }}
+              ></input>
+            </div>
+            <input type="submit" style={{ margin: "10px 0px 0px 90px" }}></input>
+          </form>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
+  
 };
 
 export default sem2;

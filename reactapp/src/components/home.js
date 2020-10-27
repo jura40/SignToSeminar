@@ -1,5 +1,6 @@
 import React from 'react';
 import './style.css';
+import { Link } from 'react-router-dom';
  
 function Home() {
     return (
@@ -12,7 +13,7 @@ function Home() {
                         </div>
  
                         <div className="naw-link-wraper"  >
-                            <a href="seminarium.html" style={{ color: 'black' }}>Seminarium</a>
+                            <Link to='/seminars' style={{ color: 'black' }}>Seminarium</Link>
                         </div>
                         <div className="naw-link-wraper">
                             <a href="kontakt.html" style={{ color: 'black' }}>Kontakt</a>

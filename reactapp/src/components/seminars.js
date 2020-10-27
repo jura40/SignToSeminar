@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './style.css'
+import '../components/seminarsItem/style.css';
 
 function Seminars() {
     return (
@@ -14,7 +14,7 @@ function Seminars() {
             </p>
             <li><Link to='/seminars/sem3'>sem3</Link></li>
             <p>- här kan du läsa om fgkdsf fdgjfd gfd gdfdfm</p>
-            <li><a style={{fontSize: '25px'}}>HOME</a></li>
+            <li><Link to ='/' style={{fontSize: '25px'}}>HOME</Link></li>
         </ul>
     </div>
     )

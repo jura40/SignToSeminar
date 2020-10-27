@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {Link} from 'react-router-dom';
 
 class sem2 extends Component {
   constructor() {
@@ -47,9 +48,9 @@ handleSubmit(event) {
   render() {
     return (
       <div>
-        <a href="index.html" style={{ color: "black", margin: "50px" }}>
+        <Link to ='/' style={{ color: "black", margin: "50px" }}>
           HOME
-        </a>
+        </Link>
   
         <article style={{ margin: "50px 0px 0px 90px", fontSize: "20px" }}>
           Kursbeskrivning
@@ -60,12 +61,11 @@ handleSubmit(event) {
         </article>
         <div>
           {" "}
-          <a
-            href="seminarium.html"
+          <Link to ='/seminars'
             style={{ margin: "50px 0px 0px 90px", fontSize: "25px" }}
           >
             back
-          </a>
+          </Link>
         </div>
         <div>
           <form onSubmit={this.handleSubmit}>

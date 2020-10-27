@@ -1,6 +1,6 @@
 import React from 'react';
-import './style.css';
 import { Link } from 'react-router-dom';
+import '../components/seminarsItem/style.css';
  
 function Home() {
     return (
@@ -9,17 +9,17 @@ function Home() {
                 <div className="nav-wraper">
                     <div className="left-side">
                         <div>
-                            <a href="seminarium.html" className="active" style={{ color: 'black' }}>Home</a>
+                            <Link to ='/' className="active" style={{ color: 'black' }}>Home</Link>
                         </div>
  
                         <div className="naw-link-wraper"  >
                             <Link to='/seminars' style={{ color: 'black' }}>Seminarium</Link>
                         </div>
                         <div className="naw-link-wraper">
-                            <a href="kontakt.html" style={{ color: 'black' }}>Kontakt</a>
+                            <Link to ='/kontakt' style={{ color: 'black' }}>Kontakt</Link>
                         </div>
                         <div>
-                            <a href="omoss.html" style={{ color: 'black' }}>Om Oss</a>
+                            <Link to ='/omoss' style={{ color: 'black' }}>Om Oss</Link>
                         </div>
  
                     </div>

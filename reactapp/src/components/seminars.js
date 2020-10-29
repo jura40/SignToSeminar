@@ -1,22 +1,42 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import '../components/seminarsItem/style.css';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import "../components/seminarsItem/style.css";
 
-function Seminars() {
+class Seminars extends Component {
+  constructor() {
+    super();
+    this.state = {
+      seminars: []
+    };
+  }
+
+  componentDidMount() {
+    // Simple GET request using fetch
+    fetch("https://localhost:5001/api/seminars")
+      .then((response) => response.json())
+      .then((data) => this.setState({ seminars: data }));
+  }
+
+  render() {
     return (
-        <div>
-        <ul className="semlist">
-            <li><Link to='/seminars/sem1'>Presentaionsteknik</Link></li>
-            <p>- Det här är kursen för er som vill hålla presentationer [mer info]</p>
-            <li><Link to='/seminars/sem2'>KA-DAGEN</Link></li>
-            <p>KA-DAGEN är en av Sveriges största möteplatser för kontrollansvariga<br />
-            </p>
-            <li><Link to='/seminars/sem3'>Våga tala</Link></li>
-            <p>-Scenskräck, talfobi, blackouts</p>
-            <li><Link to ='/' style={{fontSize: '25px'}}>HOME</Link></li>
+    <div>
+        
+        <h1>Seminars List</h1>
+        <ul>
+          {this.state.seminars.map(item => {
+            return (
+            <div>
+                <li key={`seminars-${item.id}`}>{item.namn}</li>
+            <p>{item.beskrivning}</p>
+            </div> 
+            )
+          })}
         </ul>
+
+        
     </div>
     )
+  }
 }
 
-export default Seminars
+export default Seminars;

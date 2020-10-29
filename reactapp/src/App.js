@@ -13,9 +13,7 @@ function App() {
     <div className="App">
       <Route exact path='/' component={Home}/>
       <Route exact path='/seminars' component={Seminars}/>
-      <Route exact path='/seminars/sem1' component={sem1}/>
-      <Route exact path='/seminars/sem2' component={sem2}/>
-      <Route path='/seminars/sem3' component={sem3}/>¨
+      <Route exact path='/seminars/sem/:id' component={sem1}/>
       <Route path='/kontakt' component={kontakt}/>
       <Route path='/omoss' component={omoss}/>
     </div>

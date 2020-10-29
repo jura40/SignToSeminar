@@ -26,7 +26,7 @@ class Seminars extends Component {
           {this.state.seminars.map(item => {
             return (
             <div>
-                <li key={`seminars-${item.id}`}>{item.namn}</li>
+                <li key={item.id}><h2><Link to={"/seminars/sem/" + item.id}>{item.namn}</Link></h2></li>
             <p>{item.beskrivning}</p>
             </div> 
             )

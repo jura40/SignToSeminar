@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import {Link} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 
 class sem1 extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       newUser: '',
       sem1: {},
@@ -13,17 +13,16 @@ class sem1 extends Component {
         efternamn: '',
         adress:'',
         tel:'',
-        seminarId: 1
+        seminarId: props.match.params
       }
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-
   }
 
 componentDidMount() {
     // Simple GET request using fetch
-    fetch('https://localhost:5001/api/seminars/1')
+    fetch('https://localhost:5001/api/seminars/' + this.props.match.params.id)
         .then(response => response.json())
         .then(data => this.setState({ sem1: data}));
 }
@@ -56,7 +55,7 @@ handleSubmit(event) {
   
         <article style={{ margin: "50px 0px 0px 90px", fontSize: "20px" }}>
           Kursbeskrivning
-          <p>{this.state.sem1.namn}Presentationsteknik.</p>
+          <p>{this.state.sem1.namn}</p>
           <p>
             {this.state.sem1.beskrivning}
           </p>

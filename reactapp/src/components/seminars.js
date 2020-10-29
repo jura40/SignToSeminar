@@ -7,13 +7,12 @@ function Seminars() {
         <div>
         <ul className="semlist">
             <li><Link to='/seminars/sem1'>Presentaionsteknik</Link></li>
-            <p>- här kan du läsa om Nusmir tryck på Presentationsteknik för [mer info]</p>
-            <li><Link to='/seminars/sem2'>sem2</Link></li>
-            <p>- här kan läsa omfggdsfgdafbgdfbfdb tgqertg gra ggar rg rgergr <br />
-                gdrdrhrgherhg h herhrehre htrhthr thr<br />
+            <p>- Det här är kursen för er som vill hålla presentationer [mer info]</p>
+            <li><Link to='/seminars/sem2'>KA-DAGEN</Link></li>
+            <p>KA-DAGEN är en av Sveriges största möteplatser för kontrollansvariga<br />
             </p>
-            <li><Link to='/seminars/sem3'>sem3</Link></li>
-            <p>- här kan du läsa om fgkdsf fdgjfd gfd gdfdfm</p>
+            <li><Link to='/seminars/sem3'>Våga tala</Link></li>
+            <p>-Scenskräck, talfobi, blackouts</p>
             <li><Link to ='/' style={{fontSize: '25px'}}>HOME</Link></li>
         </ul>
     </div>

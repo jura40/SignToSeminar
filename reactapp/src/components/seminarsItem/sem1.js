@@ -11,6 +11,8 @@ class sem1 extends Component {
         mail: '',
         förnamn: '',
         efternamn: '',
+        adress:'',
+        tel:'',
         seminarId: 1
       }
     }
@@ -54,7 +56,7 @@ handleSubmit(event) {
   
         <article style={{ margin: "50px 0px 0px 90px", fontSize: "20px" }}>
           Kursbeskrivning
-          <p>{this.state.sem1.namn}kurs i presentationsteknik.</p>
+          <p>{this.state.sem1.namn}Presentationsteknik.</p>
           <p>
             {this.state.sem1.beskrivning}
           </p>
@@ -97,8 +99,27 @@ handleSubmit(event) {
                 style={{ margin: "10px 0px 0px 90px" }}
               ></input>
             </div>
+            <div>
+              <input
+                type="text"
+                placeholder="Adress"
+                value={this.state.value.adress}
+                onChange={(e) => this.handleChange({ adress: e.target.value })}
+                style={{ margin: "10px 0px 0px 90px" }}
+              ></input>
+            </div>
+            <div>
+              <input
+                type="text"
+                placeholder="Telefonnummer"
+                value={this.state.value.tel}
+                onChange={(e) => this.handleChange({ tel: e.target.value })}
+                style={{ margin: "10px 0px 0px 90px" }}
+              ></input>
+            </div>
             <input type="submit" style={{ margin: "10px 0px 0px 90px" }}></input>
           </form>
+        
         </div>
       </div>
     );
